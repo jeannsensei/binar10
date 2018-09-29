@@ -1,10 +1,21 @@
 <div class="container">
     <div class="lista" *ngFor="let categoria of categorias_i">
-        {{categoria.descrip}}
+        {{categoria.descrip}} --- {{categoria.descripcioncategoria}}
+    </div>
+</div>
+
+<div class="container">
+    <div class="lista" *ngFor="let listacategoria of listacategorias">
+        {{ listacategoria }}
     </div>
 </div>
 
 
 <div class="container">
     <button (click)="envioDato()" type="submit">Tocame</button>
+</div>
+
+
+<div class="container">
+    <button (click)="envioPrueba()" type="submit">prueba</button>
 </div>

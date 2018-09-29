@@ -15,13 +15,12 @@ export class HomeComponent implements OnInit {
   hola = 'hola';
 
   constructor(private http: HttpClient) {
-    console.log('hola mundo');
-    this.http.get('http://192.168.1.77/farmacia/public/prueba')
+    this.http.get('https://reqres.in/api/users?page=2')
       .subscribe(listacategorias => {
         // categorias = Object.keys(categorias);
-        console.log(listacategorias['categorias']['data']);
-        this.categorias_i = listacategorias['categorias']['data'];
-        console.log(this.categorias_i);
+        // console.log(listacategorias['categorias']['data']);
+        // this.categorias_i = listacategorias['categorias']['data'];
+        console.log(listacategorias['data']['0']);
       });
   }
 
@@ -30,18 +29,47 @@ export class HomeComponent implements OnInit {
 
 
   envioDato() {
-    return this.http.post(`http://192.168.1.77/farmacia/public/prueba`, {
-      nombre: 'jeannuel'
-    })
+    return this.http.post('http://192.168.1.77/farmacia/public/categoria/registrar', this.hola)
       .subscribe(
         (data: any) => {
           console.log(data);
         });
-      // .pipe(
-      //   catchError(e => throwError(e))
-      // );
+    // .pipe(
+    //   catchError(e => throwError(e))
+    // );
 
-    console.log(this.http.post(`http://192.168.1.77/farmacia/public/prueba`, this.hola));
+    // console.log(this.http.post(`http://192.168.1.77/farmacia/public/prueba`, this.hola));
   }
+
+  envioPrueba() {
+    this.http.post('https://reqres.in/api/users',
+      {
+        'name': 'Jeannuel',
+        'job': 'Front End Developer'
+      })
+      .subscribe(
+        data => {
+          console.log('POST Request is successful ', data);
+        },
+        error => {
+          console.log('Error', error);
+        });
+    }
+
+  // envioPrueba() {
+  //   fetch(`https://panes-uber.000webhostapp.com/clientes/insertar_cliente.php`, {
+  //     method: 'POST',
+  //     body: {
+  //       nombre: 'this.hola'
+  //     },
+  //     headers: {
+  //       'Content-type': 'application/json; charset=UTF-8'
+  //     }
+  //   })
+  //     .then(response => response.json())
+  //     .then(json => console.log(json));
+  // }
+
+  // });
 
 }
